@@ -2,10 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 import scene3dStore from '../stores/scene3d-store';
 
-import api from '../api';
-
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { observer } from 'mobx-react-lite';
 
 function Scene3D() {
@@ -22,11 +19,8 @@ function Scene3D() {
 
 
     useEffect(() => {
-        api.getModelData('heart').then(data => {
-            new GLTFLoader().parse(data, '', e => {scene3dStore.scene.add(e.scene); console.log(e)}) 
-        });
-
-        scene3dStore.scene.add(new THREE.AmbientLight(0xffffff, 1));
+        scene3dStore.scene.add(new THREE.AmbientLight(0xaaaaaa, 2));
+        scene3dStore.scene.add(new THREE.HemisphereLight( 0xffffbb, 0x080820, 2 ));
     }, []);
 
     return (
