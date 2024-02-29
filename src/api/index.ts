@@ -5,11 +5,11 @@ import { MeshData } from "../types";
 
 class Api {
     private modelsLoader = axios.create({
-        baseURL: '/models',
+        baseURL: 'models',
         responseType: 'arraybuffer'
     });
     private dataLoader = axios.create({
-        baseURL: '/data',
+        baseURL: 'data',
         responseType: 'json'
     });
 
