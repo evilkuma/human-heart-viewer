@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "title": "Ascending Aorta"
+    },
+    {
+        "id": 2,
+        "title": "Ligamentum Arteriosum"
+    },
+    {
+        "id": 3,
+        "title": "Pulmonary Trunk"
+    },
+    {
+        "id": 4,
+        "title": "Left Auricle"
+    },
+    {
+        "id": 5,
+        "title": "Left Atrium"
+    },
+    {
+        "id": 6,
+        "title": "Left Superior and Inferior Pulmonary Veins"
+    },
+    {
+        "id": 7,
+        "title": "Right Superior and Inferior Pulmonary Veins"
+    },
+    {
+        "id": 8,
+        "title": "Right Atrium"
+    },
+    {
+        "id": 9,
+        "title": "Right Auricle"
+    },
+    {
+        "id": 10,
+        "title": "Inferior Vena Cava"
+    },
+    {
+        "id": 11,
+        "title": "Superior Vena Cava"
+    },
+    {
+        "id": 12,
+        "title": "Ventricle"
+    },
+    {
+        "id": 13,
+        "title": "Right Coronary Artery"
+    },
+    {
+        "id": 14,
+        "title": "Left Coronary Artery"
+    },
+    {
+        "id": 15,
+        "title": "Coronary Sinus and Cardiac Vein"
+    }
+]

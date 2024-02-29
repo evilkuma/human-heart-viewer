@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/human-heart-viewer/static/css/main.28e37a78.css",
+    "main.js": "/human-heart-viewer/static/js/main.015df807.js",
+    "static/media/centered.svg": "/human-heart-viewer/static/media/centered.c259393e9ea245537b3263579d9f31b7.svg",
+    "index.html": "/human-heart-viewer/index.html",
+    "main.28e37a78.css.map": "/human-heart-viewer/static/css/main.28e37a78.css.map",
+    "main.015df807.js.map": "/human-heart-viewer/static/js/main.015df807.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.28e37a78.css",
+    "static/js/main.015df807.js"
+  ]
+}
