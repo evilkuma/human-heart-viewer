@@ -5,6 +5,9 @@ import { observer } from 'mobx-react-lite';
 import objectsStore from '../stores/objects-store';
 import ObjectElement from './ObjectElement';
 
+import centered from './../assets/centered.svg';
+import scene3dStore from '../stores/scene3d-store';
+
 function ObjectsPanel() {
     return (
         <Draggable
@@ -17,6 +20,7 @@ function ObjectsPanel() {
                     {/* header */}
                     <div className="handle cursor-move flex items-center justify-between p-3 border-b rounded-t dark:border-gray-600">
                         <h3 className="text-l font-semibold text-gray-900 dark:text-white"> Structure </h3>
+                        <img className="cursor-pointer w-4 h-4" src={centered} title='centered' onClick={() => scene3dStore.zoomTo()}/>
                     </div>
                     {/* body  */}
                     <div className="p-3">

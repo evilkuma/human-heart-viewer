@@ -1,6 +1,5 @@
 import React from 'react';
 import Mesh3D from '../models/Mesh3D';
-import objectsStore from '../stores/objects-store';
 
 type ObjectElementProps = {
     mesh: Mesh3D
@@ -8,7 +7,8 @@ type ObjectElementProps = {
 
 function ObjectElement(props: ObjectElementProps) {
     const onClick = () => {
-        objectsStore.toggleMesh(props.mesh);
+        props.mesh.toggleSelection();
+        if (props.mesh.isSelected) props.mesh.zoom();
     };
 
     return (

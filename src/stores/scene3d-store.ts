@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
+import * as TWEEN from "@tweenjs/tween.js";
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -21,6 +22,8 @@ class Scene3dStore {
     private render = new RenderPass( this.scene, this.camera );
     private clear = new ClearPass('white', 1.0);
 
+    private tweens: Array<TWEEN.Tween<THREE.Vector3 | THREE.Euler>> = [];
+
     constructor() {
         makeAutoObservable(this);
 
@@ -33,6 +36,10 @@ class Scene3dStore {
         this.background.map = Scene3dStore.createBackgroundTexture(512, 512);
     }
 
+    get bs() {
+        return new THREE.Box3().setFromObject(this.scene).getBoundingSphere(new THREE.Sphere());
+    }
+
     public setCanvas(canvas: HTMLCanvasElement) {
         this.composer = new EffectComposer(new THREE.WebGLRenderer({ canvas }))
 
@@ -42,8 +49,9 @@ class Scene3dStore {
         this.composer.addPass(this.outline);
         this.composer.addPass(new OutputPass());
         
-        this.composer.renderer.setAnimationLoop(() => {
+        this.composer.renderer.setAnimationLoop((time) => {
             if (!this.composer) return;
+            for (const tween of this.tweens) tween.update(time);
             this.composer.render();
         });
 
@@ -61,6 +69,34 @@ class Scene3dStore {
         this.camera.near = 0.1;
         this.camera.far = 1000;
         this.camera.updateProjectionMatrix();
+    }
+
+    public zoomTo(bs: THREE.Sphere | undefined = undefined, dir: THREE.Vector3 | undefined = undefined) {
+        if (!bs) bs = this.bs;
+
+        const factor = 1;
+
+        let fovr = this.camera.fov * Math.PI / 180;
+        if (this.camera.aspect < 1) fovr *= this.camera.aspect;
+
+        const distanceFactor = Math.abs(bs.radius / Math.sin(fovr / 2)) * factor;
+        
+        if (!dir) dir = this.camera.getWorldDirection(new THREE.Vector3());
+
+        let offset = dir.multiplyScalar(-distanceFactor);
+        
+        const targetPosition = bs.center.clone().add(offset);
+        const targetLook = bs.center;
+        const tween = new TWEEN.Tween(this.camera.position, false)
+            .to(targetPosition, 1000)
+            .easing(TWEEN.Easing.Quadratic.InOut)
+            .onUpdate(() => this.camera.lookAt(targetLook))
+            .onComplete(() => {
+                this.tweens.splice(this.tweens.indexOf(tween), 1);
+                this.controls?.target.copy(targetLook);
+            });
+        this.tweens.push(tween);
+        tween.start();
     }
 
     private static createBackgroundTexture(width: number, height: number): THREE.DataTexture {

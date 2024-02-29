@@ -5,6 +5,7 @@ import ObjectsPanel from './components/ObjectsPanel';
 import Loader from './components/Loader';
 
 import objectsStore from './stores/objects-store';
+import scene3dStore from './stores/scene3d-store';
 
 function App() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -15,6 +16,8 @@ function App() {
 
     useEffect(() => {
         if (!isLoaded) return;
+
+        scene3dStore.zoomTo();
     }, [isLoaded]);
 
     return <>

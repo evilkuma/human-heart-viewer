@@ -40,14 +40,6 @@ class ObjectsStore {
             this.addMesh(mesh3D);
         }
     }
-
-    public toggleMesh(mesh: Mesh3D) {
-        if (!this.meshs.includes(mesh)) return;
-
-        if (scene3dStore.outline.selectedObjects[0] === mesh) return scene3dStore.outline.selectedObjects = [];
-
-        scene3dStore.outline.selectedObjects = [mesh];
-    }
 }
 
 const objectsStore = new ObjectsStore();
