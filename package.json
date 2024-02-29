@@ -1,7 +1,13 @@
 {
+  "homepage": "https://evilkuma.github.io/human-heart-viewer",
   "name": "human-heart-viewer",
   "version": "0.1.0",
+  "description": "View human heart.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evilkuma/human-heart-viewer.git"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -24,6 +30,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -49,6 +57,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
+    "gh-pages": "^6.1.1",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1"
   }
