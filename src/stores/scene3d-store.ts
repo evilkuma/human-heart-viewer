@@ -16,7 +16,7 @@ class Scene3dStore {
     public controls: OrbitControls | null = null;
 
     private composer: EffectComposer | null = null;
-    private outline = new OutlinePass(new THREE.Vector2(256, 256), this.scene, this.camera);
+    public outline = new OutlinePass(new THREE.Vector2(256, 256), this.scene, this.camera);
     private background = new TexturePass();
     private render = new RenderPass( this.scene, this.camera );
     private clear = new ClearPass('white', 1.0);

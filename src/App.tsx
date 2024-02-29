@@ -19,7 +19,7 @@ function App() {
 
     return <>
         { !isLoaded && <Loader></Loader> }
-        <ObjectsPanel></ObjectsPanel>
+        { !!objectsStore.meshs.length && <ObjectsPanel></ObjectsPanel> }
         <Scene3D />
     </>
 }
